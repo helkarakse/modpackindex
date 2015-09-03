@@ -235,14 +235,17 @@ trait TraitCommon
         foreach ($mod_data as $mod) {
             $mod['DT_RowId'] = $i;
 
+            $common = true;
             foreach ($modpack_data as $modpack_id => $modpack) {
                 if (in_array($modpack_id, $mod['packs'])) {
                     $mod[$modpack_id] = 'X';
                 } else {
+                    $common = false;
                     $mod[$modpack_id] = '';
                 }
             }
 
+            $mod['common'] = $common;
             $dtArray[] = $mod;
             $i++;
         }
